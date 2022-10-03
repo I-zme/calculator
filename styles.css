@@ -1,0 +1,74 @@
+html, body{
+    padding: 0;
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+}
+
+#calculator{
+    height: 95%;
+    aspect-ratio: 0.5/1;
+    position: absolute;
+    top:50%;
+    left: 50%;
+    translate: -50% -50%;
+    border: 1px solid black;
+}
+
+.numbers-container{
+    display: flex;
+    flex-flow: row wrap;
+    width: 75%;
+    height: 50%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    justify-content: center;
+}
+
+.number{
+    height: 25%;
+    aspect-ratio: 1/1;
+}
+
+
+
+.operators-container{
+    display: flex;
+    flex-direction: column;
+    height: calc(100% * (5/8));
+    /* width: 25%; */
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+.operator{
+    height: calc(100% / 5);
+    aspect-ratio: 1/1;
+}
+
+
+
+.mod-container{
+    width: 75%;
+    height: calc(100% * (5/8));
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-between;
+}
+
+.mod{
+    height: calc(100% / 5);
+    aspect-ratio: 1/1;
+
+}
+
+.mod.bottom{
+    margin-top: auto;
+}
