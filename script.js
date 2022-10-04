@@ -154,18 +154,26 @@ function move(numberOfSteps){
 
 document.addEventListener('keydown',e=>{
 
-    switch(e.key){
-        case 'ArrowLeft':
+    switch(e.key.toLocaleLowerCase()){
+        case 'arrowleft':
             move(-1);
             break
-        case 'ArrowRight':
+        case 'arrowright':
             move(1);
             break
-        case 'ArrowUp':
+        case 'arrowup':
             move(-4)
             break
-        case 'ArrowDown':
+        case 'arrowdown':
             move(4)
             break
+        case 'backspace':
+            document.getElementById('clear').click();
+            document.getElementById('clear').focus();
+            break
+        case 'control'&&'c':
+            document.getElementById('allClear').click();
+            document.getElementById('allClear').focus();
     }
+
 });
