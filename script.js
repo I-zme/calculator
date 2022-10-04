@@ -74,8 +74,10 @@ operators.forEach((operator)=>{
             }
             else{
                 result = Math.round(result*100)/100;
-                if(Math.ceil(Math.log10(result + 1))>9){
+                if(Math.ceil(Math.log10(Math.sqrt(result**2) + 1))>9){
                     calculatorDisplay.textContent = result.toExponential();
+                    document.getElementById('allClear').focus();
+                    result = '';
                 }
                 else{
                     calculatorDisplay.textContent = result;
