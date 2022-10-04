@@ -9,24 +9,17 @@ let secondNumberInOperation='';
 let calculatorOperator;
 let result;
 
-// numbers.forEach((number)=>{
-//     number.addEventListener('click', ()=>{
-//         console.log(number);
-//     })
-// })
 
-// const buttons = document.querySelectorAll('button');
 numbers.forEach((number)=>{
     number.addEventListener('click', ()=>{
         if(!calculatorOperator){
             firstNumberInOperation+=number.id;
+            calculatorDisplay.textContent = firstNumberInOperation;
         }
         else{
             secondNumberInOperation+=number.id;
+            calculatorDisplay.textContent = secondNumberInOperation;
         }
-        console.log('first: ',firstNumberInOperation);
-        console.log(calculatorOperator);
-        console.log('second: ',secondNumberInOperation);
     });
 });
 
@@ -68,6 +61,7 @@ operators.forEach((operator)=>{
                     break
 
             }
+            result = Math.round(result*100)/100;
             console.log(result);
             secondNumberInOperation = '';
             firstNumberInOperation = '';
@@ -76,6 +70,70 @@ operators.forEach((operator)=>{
         }
     })
 });
+
+
+function add(a,b){return a+b};
+function subtract(a,b){return a-b};
+function multiply(a,b){return a*b};
+function divide(a,b){return b===0 ? 'lol' : a/b;};
+
+
+modulators.forEach((mod)=>{
+    mod.addEventListener('click', ()=>{
+        modNumber = calculatorDisplay.textContent;
+        modNumber = modFunc(mod, modNumber);
+        if(secondNumberInOperation){
+            secondNumberInOperation = modNumber;
+        }
+        else{
+            firstNumberInOperation = modNumber;
+        }
+        calculatorDisplay.textContent = modNumber;
+        // if(secondNumberInOperation){
+        //     secondNumberInOperation =  modFunc(mod, secondNumberInOperation);
+        // }
+        // else if(firstNumberInOperation){
+        //     firstNumberInOperation = modFunc(mod, firstNumberInOperation);
+        // }
+        // else{
+        //     result = Number(modFunc(mod, result.toString()));
+        // }
+    });
+});
+
+function modFunc(mod, modNumber){
+    switch(mod.id){
+        case 'clear':
+            modNumber = clear(modNumber);
+            break
+        case 'allClear':
+            allClear();
+            modNumber='';
+            break
+        case 'percent':
+            modNumber = percent(modNumber);
+            break
+
+        case 'plusminus':
+            modNumber = plusminus(modNumber);
+            break
+        case 'dot':
+            modNumber = modNumber.includes('.') ? modNumber:dot(modNumber);
+            break
+    }
+return modNumber
+}
+
+function clear(number){return number.slice(0,-1)};
+function allClear(){
+    firstNumberInOperation = '';
+    secondNumberInOperation = '';
+    calculatorOperator = '';
+};
+function percent(number){return number/100};
+function plusminus(number){return -number};
+function dot(number){return number+='.'}
+
 
 function move(numberOfSteps){
     let tempLocationIndex = document.activeElement.getAttribute("data-index-number");
@@ -106,11 +164,3 @@ document.addEventListener('keydown',e=>{
             break
     }
 });
-
-
-function add(a,b){return a+b};
-function subtract(a,b){return a-b};
-function multiply(a,b){return a*b};
-function divide(a,b){
-    return b===0 ? 'lol' : Math.round(a/b *100)/100
-};
