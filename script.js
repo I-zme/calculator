@@ -28,11 +28,9 @@ operators.forEach((operator)=>{
         
         if(!calculatorOperator && operator.id==='equals'){
             if(firstNumberInOperation){
-                result = Number(firstNumberInOperation);
+                result = Math.round(Number(firstNumberInOperation)*100)/100;
                 firstNumberInOperation = '';
-            }
-            
-            console.log(result);
+            }            
         }
         else if(!calculatorOperator){
             calculatorOperator = operator.id;
@@ -61,12 +59,19 @@ operators.forEach((operator)=>{
                     break
 
             }
+            
+            if(result==='lol'){
+                calculatorDisplay.textContent = result;
+                result = '';
+                document.getElementById('allClear').focus()
+            }
+            else{
             result = Math.round(result*100)/100;
-            console.log(result);
+            calculatorDisplay.textContent = result;
+            calculatorOperator = operator.id==='equals' ? '': operator.id;
+            }
             secondNumberInOperation = '';
             firstNumberInOperation = '';
-            calculatorOperator = operator.id==='equals' ? '': operator.id;
-            result = result === 'lol' ? '':result;
         }
     })
 });
