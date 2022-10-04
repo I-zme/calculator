@@ -13,15 +13,22 @@ let result;
 numbers.forEach((number)=>{
     number.addEventListener('click', ()=>{
         if(!calculatorOperator){
-            firstNumberInOperation+=number.id;
-            calculatorDisplay.textContent = firstNumberInOperation;
+            firstNumberInOperation = makeNumberInOperation(firstNumberInOperation, number);
         }
         else{
-            secondNumberInOperation+=number.id;
-            calculatorDisplay.textContent = secondNumberInOperation;
+            secondNumberInOperation = makeNumberInOperation(secondNumberInOperation, number);
+
         }
     });
 });
+
+function makeNumberInOperation(numberInOperation,number){
+    if(numberInOperation.length<9){
+        numberInOperation += number.id;
+        calculatorDisplay.textContent = numberInOperation;
+    }
+    return numberInOperation
+}
 
 operators.forEach((operator)=>{
     operator.addEventListener('click', ()=>{
@@ -66,9 +73,14 @@ operators.forEach((operator)=>{
                 document.getElementById('allClear').focus()
             }
             else{
-            result = Math.round(result*100)/100;
-            calculatorDisplay.textContent = result;
-            calculatorOperator = operator.id==='equals' ? '': operator.id;
+                result = Math.round(result*100)/100;
+                if(Math.ceil(Math.log10(result + 1))>9){
+                    calculatorDisplay.textContent = result.toExponential();
+                }
+                else{
+                    calculatorDisplay.textContent = result;
+                }
+                calculatorOperator = operator.id==='equals' ? '': operator.id;
             }
             secondNumberInOperation = '';
             firstNumberInOperation = '';
