@@ -4,12 +4,82 @@ const operators = document.querySelectorAll('.operator');
 const modulators = document.querySelectorAll('.mod');
 
 
+let firstNumberInOperation='';
+let secondNumberInOperation='';
+let calculatorOperator;
+let result;
+
+// numbers.forEach((number)=>{
+//     number.addEventListener('click', ()=>{
+//         console.log(number);
+//     })
+// })
+
+// const buttons = document.querySelectorAll('button');
+numbers.forEach((number)=>{
+    number.addEventListener('click', ()=>{
+        if(!calculatorOperator){
+            firstNumberInOperation+=number.id;
+        }
+        else{
+            secondNumberInOperation+=number.id;
+        }
+        console.log('first: ',firstNumberInOperation);
+        console.log(calculatorOperator);
+        console.log('second: ',secondNumberInOperation);
+    });
+});
+
+operators.forEach((operator)=>{
+    operator.addEventListener('click', ()=>{
+        
+        if(!calculatorOperator && operator.id==='equals'){
+            if(firstNumberInOperation){
+                result = Number(firstNumberInOperation);
+                firstNumberInOperation = '';
+            }
+            
+            console.log(result);
+        }
+        else if(!calculatorOperator){
+            calculatorOperator = operator.id;
+        }
+        else{
+            firstNumberInOperation = firstNumberInOperation ? Number(firstNumberInOperation):result;
+
+            secondNumberInOperation = secondNumberInOperation ? Number(secondNumberInOperation): firstNumberInOperation;
 
 
+            switch(calculatorOperator){
+                case 'add':
+                    result = add(firstNumberInOperation, secondNumberInOperation);
+                    break
+                
+                case 'subtract':
+                    result = subtract(firstNumberInOperation, secondNumberInOperation);
+                    break
 
-function moveBy(number){
+                case 'multiply':
+                    result = multiply(firstNumberInOperation, secondNumberInOperation);
+                    break
+
+                case 'divide':
+                    result = divide(firstNumberInOperation, secondNumberInOperation);
+                    break
+
+            }
+            console.log(result);
+            secondNumberInOperation = '';
+            firstNumberInOperation = '';
+            calculatorOperator = operator.id==='equals' ? '': operator.id;
+            result = result === 'lol' ? '':result;
+        }
+    })
+});
+
+function move(numberOfSteps){
     let tempLocationIndex = document.activeElement.getAttribute("data-index-number");
-    let newLocationIndex = Number(tempLocationIndex)+number;
+    let newLocationIndex = Number(tempLocationIndex)+numberOfSteps;
     if(newLocationIndex>20){
         newLocationIndex = newLocationIndex-20;
     }
@@ -23,19 +93,24 @@ document.addEventListener('keydown',e=>{
 
     switch(e.key){
         case 'ArrowLeft':
-            moveBy(-1);
+            move(-1);
             break
         case 'ArrowRight':
-            moveBy(1);
+            move(1);
             break
         case 'ArrowUp':
-            moveBy(-4)
+            move(-4)
             break
         case 'ArrowDown':
-            moveBy(4)
-            break
-        case 'Enter':
+            move(4)
             break
     }
 });
 
+
+function add(a,b){return a+b};
+function subtract(a,b){return a-b};
+function multiply(a,b){return a*b};
+function divide(a,b){
+    return b===0 ? 'lol' : Math.round(a/b *100)/100
+};
