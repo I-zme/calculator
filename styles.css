@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Digital Numbers Regular';
+    font-style: normal;
+    font-weight: normal;
+    src: local('Digital Numbers Regular'), url('fonts/DigitalNumbers-Regular.woff') format('woff');
+}
+
 html, body{
     padding: 0;
     margin: 0;
@@ -6,6 +13,7 @@ html, body{
     overflow: hidden;
 }
 
+/* calculator style and sizing */
 .calculator-container, #calculator{
     position: absolute;
     top:50%;
@@ -15,45 +23,52 @@ html, body{
 
 .calculator-container{
     height: 97%;
-    aspect-ratio: 0.53/1;
+    aspect-ratio: 0.63/1;
     
     border: 1px solid black;
     border-radius: 10px;
+    background-color: #85adad;
 }
     
-
 #calculator{
     height: 95%;
-    aspect-ratio: 0.5/1;
+    aspect-ratio: 0.6/1;
     display: flex;
     flex-direction: column;
     gap: 5px;
 }
 
+/* display */
 .display-container{
     width: 100%;
     height: calc(100% * (3/8));
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color:coral;
+    background-color:rgb(244, 255, 209);
+    outline: 1px solid black;
 }
 
 .display{
-    width: 90%;
-    font-size: 42px;
+    width: 100%;
+    font-size: 38px;
     text-align: center;
+    font-family: 'Digital Numbers Regular';
+    letter-spacing: -0.5rem;
+    margin-left: -7px;
+    transform: scaleY(1.2);
 }
 
+
+/* buttons styling */
 button{
     all: unset;
     text-align: center;
     border-radius: 50%;
     border: 1px solid black;
-    font-weight: 800;
+    /* font-weight: 600; */
     font-size: 20px;
     z-index: 5;
-    
 }
 
 #clear{
@@ -62,7 +77,7 @@ button{
 
 #backspace{
     font-size: 36px;
-    padding-bottom: 20px;
+    padding-bottom: 14px;
 }
 
 button:focus{
@@ -73,6 +88,20 @@ button, .display, .calculator{
     box-sizing: border-box;
 }
 
+.number, #dot{
+    background-color: #666666;
+    color: white;
+} 
+
+.operator, #plusminus, #percent{
+    background-color: #b3b3b3;
+} 
+
+#clear, #backspace{
+    background-color: #ffd633;
+}
+
+/* position and sizing of buttons */
 .numbers-container, .mod-container{
     width: 75%;
     display: flex;
@@ -80,6 +109,7 @@ button, .display, .calculator{
     position: absolute;
     bottom: 0;
     left: 0;
+    gap: 1%;
 }
 
 .numbers-container{
@@ -88,8 +118,8 @@ button, .display, .calculator{
 }
 
 .number{
-    width: calc(100% / 3);    
-    height: calc(100% /4);
+    width: calc(96% / 3);    
+    height: calc(95% /4);
 }
 
 .mod-container, .operators-container{
@@ -99,25 +129,25 @@ button, .display, .calculator{
 .operators-container{
     display: flex;
     flex-direction: column;
-    width: 25%;
+    width: 24.5%;
 
     position: absolute;
     bottom: 0;
     right: 0;
+    gap: 1%;
 }
 
 .operator{
-    height: calc(100% / 5);
+    height: calc(96% / 5);
 }
-
 
 .mod-container{
     justify-content: space-between;
 }
 
 .mod{
-    height: calc(100% / 5);
-    width: calc(100% / 3);
+    height: calc(96% / 5);
+    width: calc(96% / 3);
 }
 
 .mod.bottom{
@@ -125,6 +155,7 @@ button, .display, .calculator{
 }
 
 
+/* tooltip */
 .tooltip .tooltiptext{
     visibility: hidden;
     width: 120px;
@@ -136,25 +167,13 @@ button, .display, .calculator{
     border-radius: 6px;
     font-size: 16px;
     position: absolute;
-    bottom: 102%;
+    bottom: 101%;
 
 }
 
 .tooltip:hover .tooltiptext {
     visibility: visible;
 }
-
-.tooltip .tooltiptext::after {
-    content: " ";
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    margin-left: -5px;
-    border-width: 5px;
-    border-style: solid;
-    border-color: black transparent transparent transparent;
-}
-
 
 #clear .tooltiptext{
     left: 0;
