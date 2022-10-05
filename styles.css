@@ -6,19 +6,43 @@ html, body{
     overflow: hidden;
 }
 
-#calculator{
-    height: 95%;
-    aspect-ratio: 0.5/1;
+.calculator-container, #calculator{
     position: absolute;
     top:50%;
     left: 50%;
     translate: -50% -50%;
+}
+
+.calculator-container{
+    height: 97%;
+    aspect-ratio: 0.53/1;
+    
     border: 1px solid black;
+    border-radius: 10px;
+}
+    
+
+#calculator{
+    height: 95%;
+    aspect-ratio: 0.5/1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.display-container{
+    width: 100%;
+    height: calc(100% * (3/8));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color:coral;
 }
 
 .display{
-    width: 100%;
-    height: calc(100% * (3/8));
+    width: 90%;
+    font-size: 42px;
+    text-align: center;
 }
 
 button{
@@ -27,8 +51,18 @@ button{
     border-radius: 50%;
     border: 1px solid black;
     font-weight: 800;
-
+    font-size: 20px;
     z-index: 5;
+    
+}
+
+#clear{
+    font-size: 18px;
+}
+
+#backspace{
+    font-size: 36px;
+    padding-bottom: 20px;
 }
 
 button:focus{
@@ -49,7 +83,7 @@ button, .display, .calculator{
 }
 
 .numbers-container{
-    height: 50%;
+    height: 49%;
     justify-content: center;
 }
 
@@ -58,12 +92,9 @@ button, .display, .calculator{
     height: calc(100% /4);
 }
 
-
 .mod-container, .operators-container{
-    height: calc(100% * (5/8));
-
+    height: calc(98% *(5/8) );
 }
-
 
 .operators-container{
     display: flex;
@@ -91,4 +122,46 @@ button, .display, .calculator{
 
 .mod.bottom{
     margin-top: auto;
+}
+
+
+.tooltip .tooltiptext{
+    visibility: hidden;
+    width: 120px;
+    
+    background-color: black;
+    color: white;
+    text-align: center;
+    padding: 5px 0;
+    border-radius: 6px;
+    font-size: 16px;
+    position: absolute;
+    bottom: 102%;
+
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+}
+
+.tooltip .tooltiptext::after {
+    content: " ";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: black transparent transparent transparent;
+}
+
+
+#clear .tooltiptext{
+    left: 0;
+    translate: -29%;
+}
+
+#backspace .tooltiptext{
+    left: 0;
+    translate: 17%;
 }

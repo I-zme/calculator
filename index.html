@@ -9,40 +9,45 @@
     <title>Document</title>
 </head>
 <body>
+    <div class="calculator-container">
+        <div id="calculator">
+            <div class="display-container">
+                <div class="display"></div>
+            </div>
 
+            <div class="numbers-container">
+                <button class="number" data-index-number = "5" id="1" autofocus>1</button>
+                <button class="number" data-index-number = "6" id="2">2</button>
+                <button class="number" data-index-number = "7" id="3">3</button>
+                <button class="number" data-index-number = "9" id="4">4</button>
+                <button class="number" data-index-number = "10" id="5">5</button>
+                <button class="number" data-index-number = "11" id="6">6</button>
+                <button class="number" data-index-number = "13" id="7">7</button>
+                <button class="number" data-index-number = "14" id="8">8</button>
+                <button class="number" data-index-number = "15" id="9">9</button>
+                <button class="number" data-index-number = "18" id="0">0</button>
+            </div>
 
-    <div id="calculator">
-        <div class="display"></div>
+            <div class="operators-container">
+                <button class="operator" data-index-number = "4" id="add">+</button>
+                <button class="operator" data-index-number = "8" id="subtract">-</button>
+                <button class="operator" data-index-number = "12" id="multiply">&times;</button>
+                <button class="operator" data-index-number = "16" id="divide">&#247;</button>
+                <button class="operator" data-index-number = "20" id="equals">=</button>
+            </div>
 
-        <div class="numbers-container">
-            <button class="number" data-index-number = "5" id="1" autofocus>1</button>
-            <button class="number" data-index-number = "6" id="2">2</button>
-            <button class="number" data-index-number = "7" id="3">3</button>
-            <button class="number" data-index-number = "9" id="4">4</button>
-            <button class="number" data-index-number = "10" id="5">5</button>
-            <button class="number" data-index-number = "11" id="6">6</button>
-            <button class="number" data-index-number = "13" id="7">7</button>
-            <button class="number" data-index-number = "14" id="8">8</button>
-            <button class="number" data-index-number = "15" id="9">9</button>
-            <button class="number" data-index-number = "18" id="0">0</button>
-        </div>
-
-        <div class="operators-container">
-            <button class="operator" data-index-number = "4" id="add">+</button>
-            <button class="operator" data-index-number = "8" id="subtract">-</button>
-            <button class="operator" data-index-number = "12" id="multiply">&times;</button>
-            <button class="operator" data-index-number = "16" id="divide">&#247;</button>
-            <button class="operator" data-index-number = "20" id="equal">=</button>
-        </div>
-
-        <div class="mod-container">
-            <button class="mod" data-index-number = "1" id="allClear">AC</button>
-            <button class="mod" data-index-number = "2" id="clear">c</button>
-            <button class="mod" data-index-number = "3" id="percent">&#37;</button>
-            <button class="mod bottom" data-index-number = "17" id="plusminus">&plusmn;</button>
-            <button class="mod bottom" data-index-number = "19" id="dot">.</button>
+            <div class="mod-container">
+                <button class="mod tooltip" data-index-number = "1" id="clear">Clear
+                    <span class="tooltiptext">Reset calculator <br> (ctrl+Delete)</span>
+                </button>
+                <button class="mod tooltip" data-index-number = "2" id="backspace">&larr;
+                    <span class="tooltiptext">Clear last digit <br> (Backspace)</span>
+                </button>
+                <button class="mod" data-index-number = "3" id="percent">&#37;</button>
+                <button class="mod bottom" data-index-number = "17" id="plusminus">&plusmn;</button>
+                <button class="mod bottom" data-index-number = "19" id="dot">.</button>
+            </div>
         </div>
     </div>
-
 </body>
 </html>
