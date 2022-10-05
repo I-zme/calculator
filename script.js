@@ -9,6 +9,10 @@ let secondNumberInOperation='';
 let calculatorOperator;
 let result;
 
+window.addEventListener('load', ()=>{
+    calculatorDisplay.textContent = 'sup?'
+});
+
 
 numbers.forEach((number)=>{
     number.addEventListener('click', ()=>{
