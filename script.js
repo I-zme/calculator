@@ -70,13 +70,13 @@ operators.forEach((operator)=>{
             if(result==='lol'){
                 calculatorDisplay.textContent = result;
                 result = '';
-                document.getElementById('allClear').focus()
+                document.getElementById('clear').focus()
             }
             else{
                 result = Math.round(result*100)/100;
                 if(Math.ceil(Math.log10(Math.sqrt(result**2) + 1))>9){
                     calculatorDisplay.textContent = result.toExponential();
-                    document.getElementById('allClear').focus();
+                    document.getElementById('clear').focus();
                     result = '';
                 }
                 else{
@@ -122,11 +122,11 @@ modulators.forEach((mod)=>{
 
 function modFunc(mod, modNumber){
     switch(mod.id){
-        case 'clear':
-            modNumber = clear(modNumber);
+        case 'backspace':
+            modNumber = backspace(modNumber);
             break
-        case 'allClear':
-            allClear();
+        case 'clear':
+            clear();
             modNumber='';
             break
         case 'percent':
@@ -143,8 +143,8 @@ function modFunc(mod, modNumber){
 return modNumber
 }
 
-function clear(number){return number.slice(0,-1)};
-function allClear(){
+function backspace(number){return number.slice(0,-1)};
+function clear(){
     firstNumberInOperation = '';
     secondNumberInOperation = '';
     calculatorOperator = '';
@@ -182,12 +182,12 @@ document.addEventListener('keydown',e=>{
             move(4)
             break
         case 'backspace':
+            document.getElementById('backspace').click();
+            document.getElementById('backspace').focus();
+            break
+        case 'control'&&'delete':
             document.getElementById('clear').click();
             document.getElementById('clear').focus();
-            break
-        case 'control'&&'c':
-            document.getElementById('allClear').click();
-            document.getElementById('allClear').focus();
     }
 
 });
